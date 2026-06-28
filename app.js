@@ -1,258 +1,81 @@
 const STORAGE_KEY = "concert-calendar-events-v1";
 
-const seedEvents = [
-  {
-    id: "jolin-pleasure-shenzhen-2026-03-07",
-    date: "2026-03-07",
-    artist: "蔡依林",
-    city: "深圳",
-    venue: "深圳大运中心体育场",
-    tour: "PLEASURE 世界巡回演唱会",
-    source: "https://www.jolincai.com/en/tour",
-    officialOnly: true
-  },
-  {
-    id: "jolin-pleasure-shenzhen-2026-03-08",
-    date: "2026-03-08",
-    artist: "蔡依林",
-    city: "深圳",
-    venue: "深圳大运中心体育场",
-    tour: "PLEASURE 世界巡回演唱会",
-    source: "https://www.jolincai.com/en/tour",
-    officialOnly: true
-  },
-  {
-    id: "jolin-pleasure-xiamen-2026-03-14",
-    date: "2026-03-14",
-    artist: "蔡依林",
-    city: "厦门",
-    venue: "奥林匹克体育中心-白鹭体育场",
-    tour: "PLEASURE 世界巡回演唱会",
-    source: "https://www.jolincai.com/en/tour",
-    officialOnly: true
-  },
-  {
-    id: "jolin-pleasure-xiamen-2026-03-15",
-    date: "2026-03-15",
-    artist: "蔡依林",
-    city: "厦门",
-    venue: "奥林匹克体育中心-白鹭体育场",
-    tour: "PLEASURE 世界巡回演唱会",
-    source: "https://www.jolincai.com/en/tour",
-    officialOnly: true
-  },
-  {
-    id: "jolin-pleasure-changsha-2026-03-21",
-    date: "2026-03-21",
-    artist: "蔡依林",
-    city: "长沙",
-    venue: "长沙贺龙体育场",
-    tour: "PLEASURE 世界巡回演唱会",
-    source: "https://www.jolincai.com/en/tour",
-    officialOnly: true
-  },
-  {
-    id: "jolin-pleasure-changsha-2026-03-22",
-    date: "2026-03-22",
-    artist: "蔡依林",
-    city: "长沙",
-    venue: "长沙贺龙体育场",
-    tour: "PLEASURE 世界巡回演唱会",
-    source: "https://www.jolincai.com/en/tour",
-    officialOnly: true
-  },
-  {
-    id: "jolin-pleasure-chongqing-2026-03-28",
-    date: "2026-03-28",
-    artist: "蔡依林",
-    city: "重庆",
-    venue: "重庆奥体中心体育场",
-    tour: "PLEASURE 世界巡回演唱会",
-    source: "https://www.jolincai.com/en/tour",
-    officialOnly: true
-  },
-  {
-    id: "jolin-pleasure-chongqing-2026-03-29",
-    date: "2026-03-29",
-    artist: "蔡依林",
-    city: "重庆",
-    venue: "重庆奥体中心体育场",
-    tour: "PLEASURE 世界巡回演唱会",
-    source: "https://www.jolincai.com/en/tour",
-    officialOnly: true
-  },
-  {
-    id: "jolin-pleasure-qingdao-2026-04-11",
-    date: "2026-04-11",
-    artist: "蔡依林",
-    city: "青岛",
-    venue: "青岛市民健身中心体育场",
-    tour: "PLEASURE 世界巡回演唱会",
-    source: "https://www.jolincai.com/en/tour",
-    officialOnly: true
-  },
-  {
-    id: "jolin-pleasure-xian-2026-04-18",
-    date: "2026-04-18",
-    artist: "蔡依林",
-    city: "西安",
-    venue: "西安奥体中心体育场",
-    tour: "PLEASURE 世界巡回演唱会",
-    source: "https://www.jolincai.com/en/tour",
-    officialOnly: true
-  },
-  {
-    id: "jolin-pleasure-suzhou-2026-04-25",
-    date: "2026-04-25",
-    artist: "蔡依林",
-    city: "苏州",
-    venue: "苏州奥林匹克体育中心体育场",
-    tour: "PLEASURE 世界巡回演唱会",
-    source: "https://www.jolincai.com/en/tour",
-    officialOnly: true
-  },
-  {
-    id: "jolin-pleasure-nanning-2026-05-03",
-    date: "2026-05-03",
-    artist: "蔡依林",
-    city: "南宁",
-    venue: "广西体育中心主体育场",
-    tour: "PLEASURE 世界巡回演唱会",
-    source: "https://www.jolincai.com/en/tour",
-    officialOnly: true
-  },
-  {
-    id: "jolin-pleasure-hangzhou-2026-05-15",
-    date: "2026-05-15",
-    artist: "蔡依林",
-    city: "杭州",
-    venue: "杭州奥体中心体育场",
-    tour: "PLEASURE 世界巡回演唱会",
-    source: "https://www.jolincai.com/en/tour",
-    officialOnly: true
-  },
-  {
-    id: "jolin-pleasure-hangzhou-2026-05-16",
-    date: "2026-05-16",
-    artist: "蔡依林",
-    city: "杭州",
-    venue: "杭州奥体中心体育场",
-    tour: "PLEASURE 世界巡回演唱会",
-    source: "https://www.jolincai.com/en/tour",
-    officialOnly: true
-  },
-  {
-    id: "jolin-pleasure-hangzhou-2026-05-17",
-    date: "2026-05-17",
-    artist: "蔡依林",
-    city: "杭州",
-    venue: "杭州奥体中心体育场",
-    tour: "PLEASURE 世界巡回演唱会",
-    source: "https://www.jolincai.com/en/tour",
-    officialOnly: true
-  },
-  {
-    id: "jolin-pleasure-fuzhou-2026-05-23",
-    date: "2026-05-23",
-    artist: "蔡依林",
-    city: "福州",
-    venue: "福州海峡奥林匹克体育中心体育场",
-    tour: "PLEASURE 世界巡回演唱会",
-    source: "https://www.jolincai.com/en/tour",
-    officialOnly: true
-  },
-  {
-    id: "jolin-pleasure-hefei-2026-05-30",
-    date: "2026-05-30",
-    artist: "蔡依林",
-    city: "合肥",
-    venue: "合肥体育中心体育场",
-    tour: "PLEASURE 世界巡回演唱会",
-    source: "https://www.jolincai.com/en/tour",
-    officialOnly: true
-  },
-  {
-    id: "jolin-pleasure-beijing-2026-06-12",
-    date: "2026-06-12",
-    artist: "蔡依林",
-    city: "北京",
-    venue: "国家体育场-鸟巢",
-    tour: "PLEASURE 世界巡回演唱会",
-    source: "https://www.jolincai.com/en/tour",
-    officialOnly: true
-  },
-  {
-    id: "jolin-pleasure-beijing-2026-06-13",
-    date: "2026-06-13",
-    artist: "蔡依林",
-    city: "北京",
-    venue: "国家体育场-鸟巢",
-    tour: "PLEASURE 世界巡回演唱会",
-    source: "https://www.jolincai.com/en/tour",
-    officialOnly: true
-  },
-  {
-    id: "jolin-pleasure-beijing-2026-06-14",
-    date: "2026-06-14",
-    artist: "蔡依林",
-    city: "北京",
-    venue: "国家体育场-鸟巢",
-    tour: "PLEASURE 世界巡回演唱会",
-    source: "https://www.jolincai.com/en/tour",
-    officialOnly: true
-  },
-  {
-    id: "jolin-pleasure-shenyang-2026-06-20",
-    date: "2026-06-20",
-    artist: "蔡依林",
-    city: "沈阳",
-    venue: "沈阳奥林匹克体育中心体育场",
-    tour: "PLEASURE 世界巡回演唱会",
-    source: "https://www.jolincai.com/en/tour",
-    officialOnly: true
-  },
-  {
-    id: "jolin-pleasure-taiyuan-2026-07-04",
-    date: "2026-07-04",
-    artist: "蔡依林",
-    city: "太原",
-    venue: "山西体育中心体育场",
-    tour: "PLEASURE 世界巡回演唱会",
-    source: "https://m.damai.cn/shows/item.html?itemId=1038152539046&sqm=&utm=",
-    officialOnly: true
-  },
-  {
-    id: "jolin-pleasure-nanchang-2026-07-11",
-    date: "2026-07-11",
-    artist: "蔡依林",
-    city: "南昌",
-    venue: "南昌国际体育中心体育场",
-    tour: "PLEASURE 世界巡回演唱会",
-    source: "https://m.damai.cn/shows/item.html?itemId=1037820171294&sqm=&utm=",
-    officialOnly: true
-  },
-  {
-    id: "jolin-pleasure-chengdu-2026-07-19",
-    date: "2026-07-19",
-    artist: "蔡依林",
-    city: "成都",
-    venue: "东安湖体育公园主体育场",
-    tour: "PLEASURE 世界巡回演唱会",
-    source: "https://detail.damai.cn/item.htm?id=1023079779711",
-    officialOnly: true
-  },
-  {
-    id: "jolin-pleasure-chengdu-2026-07-20",
-    date: "2026-07-20",
-    artist: "蔡依林",
-    city: "成都",
-    venue: "东安湖体育公园主体育场",
-    tour: "PLEASURE 世界巡回演唱会",
-    source: "https://detail.damai.cn/item.htm?id=1023079779711",
-    officialOnly: true
-  }
+const officialRows = [
+  { dateText: "2026.06.12-2026.06.14", artist: "蔡依林", tour: "Pleasure世界巡回演唱会", venue: "国家体育场（鸟巢）", city: "北京", province: "北京" },
+  { dateText: "2026.06.20", artist: "蔡依林", tour: "Pleasure世界巡回演唱会", venue: "沈阳奥林匹克体育中心体育场", city: "沈阳", province: "辽宁" },
+  { dateText: "2026.06.26-2026.06.28", artist: "周杰伦", tour: "嘉年华II世界巡回演唱会 龙拳北京站", venue: "国家体育场（鸟巢）", city: "北京", province: "北京" },
+  { dateText: "2026.07.04", artist: "蔡依林", tour: "Pleasure世界巡回演唱会", venue: "山西体育中心体育场", city: "太原", province: "山西" },
+  { dateText: "2026.07.10-2026.07.12", artist: "邓紫棋", tour: "I AM GLORIA 2.0世界巡回演唱会", venue: "杭州奥体中心体育场", city: "杭州", province: "浙江" },
+  { dateText: "2026.07.11", artist: "蔡依林", tour: "Pleasure世界巡回演唱会", venue: "南昌国际体育中心体育场", city: "南昌", province: "江西" },
+  { dateText: "2026.07.11-2026.07.12", artist: "黎明", tour: "LEON LAI ROBBABA巡回演唱会", venue: "宝能国际体育演艺中心", city: "广州", province: "广东" },
+  { dateText: "2026.07.17、2026.07.19", artist: "蔡依林", tour: "Pleasure世界巡回演唱会", venue: "东安湖体育公园主体育场", city: "成都", province: "四川" },
+  { dateText: "2026.07.24-2026.07.26", artist: "邓紫棋", tour: "I AM GLORIA 2.0世界巡回演唱会", venue: "天津奥林匹克中心体育场", city: "天津", province: "天津" },
+  { dateText: "2026.07.25", artist: "黎明", tour: "LEON LAI ROBBABA巡回演唱会", venue: "东安湖体育公园多功能体育馆", city: "成都", province: "四川" },
+  { dateText: "2026.08.07-2026.08.09", artist: "邓紫棋", tour: "I AM GLORIA 2.0世界巡回演唱会", venue: "南昌国际体育中心体育场", city: "南昌", province: "江西" },
+  { dateText: "2026.08.21-2026.08.23", artist: "邓紫棋", tour: "I AM GLORIA 2.0世界巡回演唱会", venue: "重庆奥体中心体育场", city: "重庆", province: "重庆" },
+  { dateText: "2026.08.29-2026.08.30", artist: "蔡依林", tour: "Pleasure世界巡回演唱会", venue: "天津奥林匹克中心体育场", city: "天津", province: "天津" },
+  { dateText: "2026.09.18-2026.09.20", artist: "邓紫棋", tour: "I AM GLORIA 2.0世界巡回演唱会", venue: "深圳大运中心体育场", city: "深圳", province: "广东" },
+  { dateText: "2026.09.25-2026.09.27", artist: "邓紫棋", tour: "I AM GLORIA 2.0世界巡回演唱会", venue: "深圳大运中心体育场", city: "深圳", province: "广东" },
+  { dateText: "2026.07.16-2026.07.17", artist: "TF家族", tour: "TF家族运动会", venue: "澳门银河综艺馆", city: "澳门", province: "澳门" }
 ];
 
+const seedEvents = expandOfficialRows(officialRows);
+
+function expandOfficialRows(rows) {
+  return rows.flatMap((row, rowIndex) =>
+    expandDateText(row.dateText).map((date, dateIndex) => ({
+      id: `${slugify(row.artist)}-${date}-${rowIndex}-${dateIndex}`,
+      date,
+      artist: row.artist,
+      city: row.city,
+      province: row.province,
+      venue: row.venue,
+      tour: row.tour,
+      source: "2026年6-12月已官宣演唱会汇总.xlsx",
+      officialOnly: true
+    }))
+  );
+}
+
+function expandDateText(dateText) {
+  return String(dateText)
+    .split("、")
+    .flatMap((part) => {
+      const normalized = part.trim();
+      if (!normalized) return [];
+      if (!normalized.includes("-")) return [normalizeDateText(normalized)];
+      const [startText, endText] = normalized.split("-").map((value) => value.trim());
+      const dates = [];
+      const current = parseDateText(startText);
+      const end = parseDateText(endText);
+      while (current <= end) {
+        dates.push(formatDateObject(current));
+        current.setDate(current.getDate() + 1);
+      }
+      return dates;
+    });
+}
+
+function parseDateText(value) {
+  const [year, month, day] = value.split(".").map(Number);
+  return new Date(year, month - 1, day);
+}
+
+function normalizeDateText(value) {
+  return formatDateObject(parseDateText(value));
+}
+
+function formatDateObject(date) {
+  return `${date.getFullYear()}-${String(date.getMonth() + 1).padStart(2, "0")}-${String(date.getDate()).padStart(2, "0")}`;
+}
+
+function slugify(value) {
+  return String(value)
+    .trim()
+    .toLowerCase()
+    .replace(/[^\p{L}\p{N}]+/gu, "-")
+    .replace(/^-|-$/g, "");
+}
 const state = {
   month: "2026-07",
   selectedId: null,
@@ -294,15 +117,23 @@ function loadEvents() {
 }
 
 function mergeSeedEvents(savedEvents) {
-  const seen = new Set(savedEvents.map((event) => event.id));
+  const cleanedSavedEvents = savedEvents.filter((event) => !String(event.id || "").startsWith("jolin-pleasure-"));
+  const seen = new Set(cleanedSavedEvents.map((event) => event.id));
   const missingSeeds = seedEvents.filter((event) => !seen.has(event.id));
-  return [...savedEvents, ...missingSeeds];
+  return [...cleanedSavedEvents, ...missingSeeds];
 }
 
 function getEventKey(event) {
   return [event.date, event.artist, event.city, event.venue, event.tour]
-    .map((value) => String(value || "").trim().toLowerCase())
+    .map((value, index) => (index === 0 ? String(value || "").trim() : normalizeEventText(value)))
     .join("|");
+}
+
+function normalizeEventText(value) {
+  return String(value || "")
+    .trim()
+    .toLowerCase()
+    .replace(/[\s·.。()（）\-—_《》「」“”"'：:]+/g, "");
 }
 
 function dedupeEvents(events) {
@@ -549,3 +380,4 @@ els.resetData.addEventListener("click", () => {
 });
 
 render();
+
