@@ -1,0 +1,139 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>国内演唱会场馆排期日历</title>
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <main class="app-shell">
+      <div class="desktop-stickers" aria-hidden="true">
+        <span class="sticker sticker-blue">LIVE</span>
+        <span class="sticker sticker-pink">IDOL</span>
+        <span class="sticker sticker-star">★</span>
+      </div>
+      <div class="designer-watermark" aria-label="设计者水印">
+        <span>designed by @popo勇闯世界</span>
+      </div>
+      <section class="topbar" aria-label="筛选工具栏">
+        <div class="window-bar" aria-hidden="true">
+          <span></span>
+          <span></span>
+          <span></span>
+          <p>concert-calendar.exe</p>
+        </div>
+        <div class="brand-block">
+          <p class="eyebrow">已官宣 · 国内场馆 · 非音乐节</p>
+          <h1>演唱会排期日历</h1>
+        </div>
+        <div class="toolbar">
+          <label>
+            月份
+            <input id="monthPicker" type="month" value="2026-07" />
+          </label>
+          <label>
+            城市
+            <select id="cityFilter">
+              <option value="">全部城市</option>
+            </select>
+          </label>
+          <label>
+            搜索
+            <input id="searchInput" type="search" placeholder="歌手 / 场馆 / 巡演" />
+          </label>
+        </div>
+      </section>
+
+      <section class="workspace">
+        <section class="calendar-panel" aria-label="演唱会日历">
+          <div class="panel-titlebar" aria-hidden="true">
+            <span>calendar.window</span>
+            <button type="button" tabindex="-1">×</button>
+          </div>
+          <div class="calendar-head">
+            <button id="prevMonth" type="button" aria-label="上个月">‹</button>
+            <h2 id="calendarTitle">2026年7月</h2>
+            <button id="nextMonth" type="button" aria-label="下个月">›</button>
+          </div>
+          <div class="weekday-row" aria-hidden="true">
+            <span>一</span><span>二</span><span>三</span><span>四</span><span>五</span><span>六</span><span>日</span>
+          </div>
+          <div id="calendarGrid" class="calendar-grid"></div>
+        </section>
+
+        <aside class="note-panel" aria-label="便利贴详情">
+          <article id="detailNote" class="sticky-note detail-note" hidden>
+            <div class="panel-titlebar note-titlebar" aria-hidden="true">
+              <span>memo.popup</span>
+              <button type="button" tabindex="-1">×</button>
+            </div>
+            <div class="note-meta">
+              <span id="detailDate"></span>
+              <span id="detailCity"></span>
+            </div>
+            <h2 id="detailArtist"></h2>
+            <p id="detailSentence"></p>
+            <dl>
+              <div>
+                <dt>巡演</dt>
+                <dd id="detailTour"></dd>
+              </div>
+              <div>
+                <dt>场馆</dt>
+                <dd id="detailVenue"></dd>
+              </div>
+            </dl>
+          </article>
+
+          <section class="quick-list" aria-label="当月清单">
+            <div class="panel-titlebar compact-titlebar" aria-hidden="true">
+              <span>monthly.list</span>
+              <button type="button" tabindex="-1">×</button>
+            </div>
+            <div class="section-title">
+              <h3>当月清单</h3>
+              <span id="eventCount">0场</span>
+            </div>
+            <div id="eventList" class="event-list"></div>
+          </section>
+        </aside>
+      </section>
+
+      <section class="manager-band" aria-label="录入与数据管理">
+        <div class="panel-titlebar" aria-hidden="true">
+          <span>add-show.form</span>
+          <button type="button" tabindex="-1">×</button>
+        </div>
+        <form id="eventForm" class="entry-form">
+          <div class="section-title">
+            <h2>录入官宣场次</h2>
+            <span>本地保存</span>
+          </div>
+          <div class="form-grid">
+            <label>日期<input name="date" type="date" required /></label>
+            <label>歌手 / 爱豆<input name="artist" required placeholder="如 邓紫棋" /></label>
+            <label>城市<input name="city" required placeholder="如 杭州" /></label>
+            <label>场馆<input name="venue" required placeholder="如 杭州奥体中心体育场" /></label>
+            <label>巡演名称<input name="tour" required placeholder="如 I AM GLORIA 世界巡回演唱会" /></label>
+          </div>
+          <label class="check-row">
+            <input name="officialOnly" type="checkbox" required checked />
+            我确认这是已官宣的单独演唱会，不是音乐节、拼盘或未官宣传闻。
+          </label>
+          <div class="form-actions">
+            <button type="submit">添加到日历</button>
+            <button id="exportData" type="button" class="secondary">导出 JSON</button>
+            <label class="import-button">
+              导入 JSON
+              <input id="importData" type="file" accept="application/json" />
+            </label>
+            <button id="resetData" type="button" class="ghost">恢复官方数据</button>
+          </div>
+        </form>
+      </section>
+    </main>
+
+    <script src="./app.js"></script>
+  </body>
+</html>
