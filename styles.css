@@ -637,9 +637,33 @@ a {
     padding-inline: 16px;
   }
 
+  .manager-band {
+    padding: 48px 14px 16px;
+  }
+
   .toolbar,
   .form-grid {
     grid-template-columns: 1fr;
+  }
+
+  .toolbar label,
+  .form-grid label {
+    min-width: 0;
+    width: 100%;
+  }
+
+  input,
+  select {
+    min-width: 0;
+    max-width: 100%;
+    width: 100%;
+  }
+
+  input[type="month"],
+  input[type="date"] {
+    display: block;
+    appearance: none;
+    -webkit-appearance: none;
   }
 
   .calendar-panel {
