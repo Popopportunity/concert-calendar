@@ -627,8 +627,8 @@ a {
 
 @media (max-width: 720px) {
   .app-shell {
-    width: min(100% - 18px, 1440px);
-    padding-top: 18px;
+    width: min(100% - 10px, 1440px);
+    padding-top: 14px;
   }
 
   .topbar {
@@ -641,12 +641,68 @@ a {
   }
 
   .calendar-panel {
-    overflow-x: auto;
+    overflow-x: visible;
+    padding: 44px 8px 10px;
   }
 
   .weekday-row,
   .calendar-grid {
-    min-width: 720px;
+    grid-template-columns: repeat(7, minmax(0, 1fr));
+    min-width: 0;
+    gap: 4px;
+  }
+
+  .calendar-head {
+    margin-bottom: 12px;
+  }
+
+  .calendar-head h2 {
+    padding: 7px 14px;
+    font-size: 22px;
+  }
+
+  .calendar-head button {
+    width: 38px;
+    height: 38px;
+    font-size: 25px;
+  }
+
+  .weekday-row {
+    margin-bottom: 5px;
+    font-size: 12px;
+  }
+
+  .weekday-row span {
+    padding: 5px 0;
+  }
+
+  .day-cell {
+    min-height: 86px;
+    border-width: 1px;
+    border-radius: 12px;
+    padding: 5px 4px;
+  }
+
+  .date-number {
+    width: 23px;
+    height: 23px;
+    border-width: 2px;
+    font-size: 12px;
+  }
+
+  .event-stack {
+    gap: 4px;
+    margin-top: 5px;
+  }
+
+  .event-pill {
+    border-width: 2px;
+    border-radius: 999px;
+    padding: 4px 3px;
+    font-size: 10px;
+    line-height: 1.1;
+    text-align: center;
+    box-shadow: 1px 2px 0 rgba(74, 63, 83, 0.09);
   }
 
   .sticker {
@@ -659,5 +715,26 @@ a {
     max-width: calc(100vw - 20px);
     padding: 3px 6px;
     font-size: 12px;
+  }
+}
+
+@media (max-width: 420px) {
+  .calendar-panel {
+    padding-inline: 6px;
+  }
+
+  .weekday-row,
+  .calendar-grid {
+    gap: 3px;
+  }
+
+  .day-cell {
+    min-height: 78px;
+    padding: 4px 3px;
+  }
+
+  .event-pill {
+    font-size: 9px;
+    padding-inline: 2px;
   }
 }
