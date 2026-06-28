@@ -325,7 +325,6 @@ els.eventForm.addEventListener("submit", (event) => {
     city: entry.city.trim(),
     venue: entry.venue.trim(),
     tour: entry.tour.trim(),
-    source: entry.source.trim(),
     officialOnly: true
   };
   if (!isConcertOnly(submittedEvent)) {
@@ -349,8 +348,7 @@ function copySubmission(submittedEvent) {
     submittedEvent.artist,
     submittedEvent.city,
     submittedEvent.venue,
-    submittedEvent.tour,
-    submittedEvent.source
+    submittedEvent.tour
   ];
   const text = values.join("\t");
   if (navigator.clipboard && window.isSecureContext) {
