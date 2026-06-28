@@ -579,7 +579,8 @@ a {
 }
 
 .form-actions button,
-.import-button {
+.import-button,
+.sheet-link {
   border: 2px solid var(--ink);
   border-radius: 999px;
   padding: 11px 16px;
@@ -588,6 +589,7 @@ a {
   font-weight: 900;
   cursor: pointer;
   box-shadow: 3px 4px 0 rgba(74, 63, 83, 0.1);
+  text-decoration: none;
 }
 
 .form-actions .secondary,

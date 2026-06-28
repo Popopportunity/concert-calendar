@@ -1,4 +1,6 @@
-const STORAGE_KEY = "concert-calendar-events-v1";
+﻿const STORAGE_KEY = "concert-calendar-events-v1";
+
+const SUBMISSION_SHEET_URL = "https://docs.qq.com/sheet/DT1BqUkdwWEpPbnJ5?tab=000001";
 
 const officialRows = [
   { dateText: "2026.06.12-2026.06.14", artist: "蔡依林", tour: "Pleasure世界巡回演唱会", venue: "国家体育场（鸟巢）", city: "北京", province: "北京" },
@@ -99,10 +101,7 @@ const els = {
   detailSentence: document.querySelector("#detailSentence"),
   detailTour: document.querySelector("#detailTour"),
   detailVenue: document.querySelector("#detailVenue"),
-  eventForm: document.querySelector("#eventForm"),
-  exportData: document.querySelector("#exportData"),
-  importData: document.querySelector("#importData"),
-  resetData: document.querySelector("#resetData")
+  eventForm: document.querySelector("#eventForm")
 };
 
 function loadEvents() {
@@ -320,64 +319,58 @@ els.eventForm.addEventListener("submit", (event) => {
   event.preventDefault();
   const formData = new FormData(event.currentTarget);
   const entry = Object.fromEntries(formData.entries());
-  const newEvent = {
-    id: `${entry.artist}-${entry.date}-${Date.now()}`,
+  const submittedEvent = {
     date: entry.date,
     artist: entry.artist.trim(),
     city: entry.city.trim(),
     venue: entry.venue.trim(),
     tour: entry.tour.trim(),
+    source: entry.source.trim(),
     officialOnly: true
   };
-  if (!isConcertOnly(newEvent)) {
+  if (!isConcertOnly(submittedEvent)) {
     alert("这条看起来像音乐节相关信息，已按规则拦截。");
     return;
   }
-  if (state.events.some((eventItem) => getEventKey(eventItem) === getEventKey(newEvent))) {
-    alert("这场演唱会已经在日历里啦。");
+  if (state.events.some((eventItem) => getEventKey(eventItem) === getEventKey(submittedEvent))) {
+    alert("这场演唱会已经在公开日历里啦。");
     return;
   }
-  state.events = dedupeEvents([...state.events, newEvent]);
-  saveEvents();
-  els.monthPicker.value = newEvent.date.slice(0, 7);
-  state.selectedId = newEvent.id;
+  copySubmission(submittedEvent);
+  window.open(SUBMISSION_SHEET_URL, "_blank", "noopener");
   event.currentTarget.reset();
   event.currentTarget.elements.officialOnly.checked = true;
-  render();
+  alert("投稿内容已经复制。腾讯文档打开后，请粘贴到表格里，审核通过后会更新到公开日历。");
 });
 
-els.exportData.addEventListener("click", () => {
-  const blob = new Blob([JSON.stringify(state.events, null, 2)], { type: "application/json" });
-  const url = URL.createObjectURL(blob);
-  const link = document.createElement("a");
-  link.href = url;
-  link.download = "concert-calendar-events.json";
-  link.click();
-  URL.revokeObjectURL(url);
-});
-
-els.importData.addEventListener("change", async (event) => {
-  const [file] = event.target.files;
-  if (!file) return;
-  const text = await file.text();
-  const imported = JSON.parse(text);
-  if (!Array.isArray(imported)) {
-    alert("JSON 需要是演唱会数组。");
+function copySubmission(submittedEvent) {
+  const values = [
+    submittedEvent.date,
+    submittedEvent.artist,
+    submittedEvent.city,
+    submittedEvent.venue,
+    submittedEvent.tour,
+    submittedEvent.source
+  ];
+  const text = values.join("\t");
+  if (navigator.clipboard && window.isSecureContext) {
+    navigator.clipboard.writeText(text).catch(() => fallbackCopy(text));
     return;
   }
-  state.events = dedupeEvents(imported.filter((item) => item.date && item.artist && item.venue && item.officialOnly !== false && isConcertOnly(item)));
-  saveEvents();
-  state.selectedId = null;
-  render();
-});
+  fallbackCopy(text);
+}
 
-els.resetData.addEventListener("click", () => {
-  if (!confirm("确定要恢复为内置官方数据吗？这会移除你手动录入的本地数据。")) return;
-  state.events = dedupeEvents(seedEvents);
-  state.selectedId = null;
-  saveEvents();
-  render();
-});
+function fallbackCopy(text) {
+  const textarea = document.createElement("textarea");
+  textarea.value = text;
+  textarea.setAttribute("readonly", "");
+  textarea.style.position = "fixed";
+  textarea.style.left = "-9999px";
+  document.body.append(textarea);
+  textarea.select();
+  document.execCommand("copy");
+  textarea.remove();
+}
 
 render();
 

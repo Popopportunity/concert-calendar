@@ -102,13 +102,13 @@
 
       <section class="manager-band" aria-label="录入与数据管理">
         <div class="panel-titlebar" aria-hidden="true">
-          <span>add-show.form</span>
+          <span>submit-show.form</span>
           <button type="button" tabindex="-1">×</button>
         </div>
         <form id="eventForm" class="entry-form">
           <div class="section-title">
-            <h2>录入官宣场次</h2>
-            <span>本地保存</span>
+            <h2>补充官宣场次</h2>
+            <span>投稿审核</span>
           </div>
           <div class="form-grid">
             <label>日期<input name="date" type="date" required /></label>
@@ -116,19 +116,15 @@
             <label>城市<input name="city" required placeholder="如 杭州" /></label>
             <label>场馆<input name="venue" required placeholder="如 杭州奥体中心体育场" /></label>
             <label>巡演名称<input name="tour" required placeholder="如 I AM GLORIA 世界巡回演唱会" /></label>
+            <label>官宣链接<input name="source" type="url" required placeholder="微博 / 大麦 / 猫眼 / 主办方链接" /></label>
           </div>
           <label class="check-row">
             <input name="officialOnly" type="checkbox" required checked />
-            我确认这是已官宣的单独演唱会，不是音乐节、拼盘或未官宣传闻。
+            我确认这是已官宣的单独演唱会，不是音乐节、拼盘或未官宣传闻。提交后需站长审核才会更新到公开日历。
           </label>
           <div class="form-actions">
-            <button type="submit">添加到日历</button>
-            <button id="exportData" type="button" class="secondary">导出 JSON</button>
-            <label class="import-button">
-              导入 JSON
-              <input id="importData" type="file" accept="application/json" />
-            </label>
-            <button id="resetData" type="button" class="ghost">恢复官方数据</button>
+            <button type="submit">复制投稿并打开表格</button>
+            <a class="sheet-link secondary" href="https://docs.qq.com/sheet/DT1BqUkdwWEpPbnJ5?tab=000001" target="_blank" rel="noreferrer">直接打开投稿表</a>
           </div>
         </form>
       </section>
