@@ -1,0 +1,27 @@
+[
+  {
+    "name": "大麦全国演唱会搜索",
+    "platform": "damai",
+    "url": "https://search.damai.cn/search.htm?ctl=%E6%BC%94%E5%94%B1%E4%BC%9A&order=1"
+  },
+  {
+    "name": "大麦北京演唱会搜索",
+    "platform": "damai",
+    "url": "https://search.damai.cn/search.htm?ctl=%E6%BC%94%E5%94%B1%E4%BC%9A&cty=%E5%8C%97%E4%BA%AC&order=1"
+  },
+  {
+    "name": "大麦上海演唱会搜索",
+    "platform": "damai",
+    "url": "https://search.damai.cn/search.htm?ctl=%E6%BC%94%E5%94%B1%E4%BC%9A&cty=%E4%B8%8A%E6%B5%B7&order=1"
+  },
+  {
+    "name": "大麦广州演唱会搜索",
+    "platform": "damai",
+    "url": "https://search.damai.cn/search.htm?ctl=%E6%BC%94%E5%94%B1%E4%BC%9A&cty=%E5%B9%BF%E5%B7%9E&order=1"
+  },
+  {
+    "name": "大麦深圳演唱会搜索",
+    "platform": "damai",
+    "url": "https://search.damai.cn/search.htm?ctl=%E6%BC%94%E5%94%B1%E4%BC%9A&cty=%E6%B7%B1%E5%9C%B3&order=1"
+  }
+]
